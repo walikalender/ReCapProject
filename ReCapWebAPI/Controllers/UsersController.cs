@@ -40,7 +40,7 @@ namespace ReCapWebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public IActionResult Add(User user)
         {
             var result = _userService.Add(user);

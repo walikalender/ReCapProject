@@ -27,6 +27,17 @@ namespace ReCapWebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+        [HttpGet("getcardetail")]
+        public IActionResult GetCarDetail()
+        {
+            var result = _carService.GetCarDetails();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
