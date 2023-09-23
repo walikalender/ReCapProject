@@ -40,7 +40,7 @@ namespace ReCapProject.Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
-        public IDataResult<Rental> GetCarById(int id)
+        public IDataResult<Rental> GetRentalById(int id)
         {
             if (false)
             {

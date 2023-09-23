@@ -7,19 +7,18 @@ namespace ReCapWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class ColorsController : ControllerBase
     {
-        ICarService _carService;
-        public CarsController(ICarService carService)
+        IColorService _colorService;
+        public ColorsController(IColorService colorService)
         {
-                _carService = carService;
+            _colorService = colorService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _carService.GetAllCars();
-
+            var result = _colorService.GetAllColors();
             if (result.Success)
             {
                 return Ok(result);
@@ -27,10 +26,11 @@ namespace ReCapWebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetByid(int id)
         {
-            var result = _carService.GetCarById(id);
+            var result = _colorService.GetColorById(id);
 
             if (result.Success)
             {
@@ -41,24 +41,30 @@ namespace ReCapWebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Color color)
         {
-            var result = _carService.Add(car);
-
+            var result = _colorService.Add(color);
             if (result.Success)
             {
                 return Ok(result);
             }
-
             return BadRequest(result.Message);
         }
 
-        [HttpPut("update")]
-        public IActionResult Update(Car car)
+        [HttpPut]
+       public IActionResult Update(Color color)
         {
-            var result = _carService.Update(car);
-
-
+            var result = _colorService.Update(color);
+            if(result.Success) 
+            {
+            return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpDelete("deleteid")]
+        public IActionResult Delete(int id)
+        {
+            var result = _colorService.Delete(_colorService.GetColorById(id).Data);
             if (result.Success)
             {
                 return Ok(result);
@@ -67,11 +73,10 @@ namespace ReCapWebAPI.Controllers
         }
 
         /*
-        [HttpDelete("delete")]
-        public IActionResult Delete(Car car)
+         [HttpDelete("delete")]
+        public IActionResult Delete(Color color)
         {
-            var result = _carService.Delete(car);
-
+            var result = _colorService.Delete(color);
             if (result.Success)
             {
                 return Ok(result);
@@ -79,17 +84,5 @@ namespace ReCapWebAPI.Controllers
             return BadRequest(result.Message);
         }
         */
-
-        [HttpDelete("deleteid")]
-        public IActionResult DeleteCarById(int id)
-        {
-            var result = _carService.Delete(_carService.GetCarById(id).Data);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result.Message);
-        }
     }
 }

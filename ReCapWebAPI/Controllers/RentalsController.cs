@@ -7,18 +7,18 @@ namespace ReCapWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class RentalsController : ControllerBase
     {
-        ICarService _carService;
-        public CarsController(ICarService carService)
+        IRentalService _rentalService;
+        public RentalsController(IRentalService rentalService)
         {
-                _carService = carService;
+            _rentalService = rentalService; 
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _carService.GetAllCars();
+            var result = _rentalService.GetAllCars();
 
             if (result.Success)
             {
@@ -30,7 +30,7 @@ namespace ReCapWebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _carService.GetCarById(id);
+            var result = _rentalService.GetRentalById(id);
 
             if (result.Success)
             {
@@ -41,9 +41,9 @@ namespace ReCapWebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Rental rental)
         {
-            var result = _carService.Add(car);
+            var result = _rentalService.Add(rental);
 
             if (result.Success)
             {
@@ -54,9 +54,9 @@ namespace ReCapWebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(Car car)
+        public IActionResult Update(Rental rental)
         {
-            var result = _carService.Update(car);
+            var result = _rentalService.Update(rental);
 
 
             if (result.Success)
@@ -68,9 +68,9 @@ namespace ReCapWebAPI.Controllers
 
         /*
         [HttpDelete("delete")]
-        public IActionResult Delete(Car car)
+        public IActionResult Delete(Rental rental)
         {
-            var result = _carService.Delete(car);
+            var result = _rentalService.Delete(rental);
 
             if (result.Success)
             {
@@ -83,7 +83,7 @@ namespace ReCapWebAPI.Controllers
         [HttpDelete("deleteid")]
         public IActionResult DeleteCarById(int id)
         {
-            var result = _carService.Delete(_carService.GetCarById(id).Data);
+            var result = _rentalService.Delete(_rentalService.GetRentalById(id).Data);
 
             if (result.Success)
             {

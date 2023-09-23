@@ -10,7 +10,7 @@ namespace ReCapProject.Business.Abstract
     public interface IRentalService
     {
         IResult Add(Rental rental);
-        IDataResult<Rental> GetCarById(int id);
+        IDataResult<Rental> GetRentalById(int id);
         IDataResult<List<Rental>> GetAllCars();
         IResult Update(Rental rental);
         IResult Delete(Rental rental);
