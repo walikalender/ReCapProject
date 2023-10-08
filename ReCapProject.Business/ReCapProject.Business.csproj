@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ReCapProject.Core\ReCapProject.Core.csproj" />
     <ProjectReference Include="..\ReCapProject.DataAccess\ReCapProject.DataAccess.csproj" />
     <ProjectReference Include="..\ReCapProject.Entities\ReCapProject.Entities.csproj" />
