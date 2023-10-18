@@ -1,5 +1,7 @@
 ﻿using ReCapProject.Business.Abstract;
 using ReCapProject.Business.Constants;
+using ReCapProject.Business.ValidationRules.FluentValidation;
+using ReCapProject.Core.CrossCuttingConcerns.Validation;
 using ReCapProject.Core.Utilites.Results.Abstract;
 using ReCapProject.Core.Utilites.Results.Concrete;
 using ReCapProject.DataAccess.Abstract;
@@ -22,10 +24,7 @@ namespace ReCapProject.Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.CarName.Length < 2)
-            {
-                return new ErrorResult(Message.CarNameInvalid);
-            }
+            ValidationTool.Validate(new CarValidator(), car);
 
                 _carDal.Add(car);
                 return new SuccessResult(Message.CarAdded);
