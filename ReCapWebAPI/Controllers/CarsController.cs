@@ -61,7 +61,7 @@ namespace ReCapWebAPI.Controllers
                 return Ok(result);
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpPut("update")]

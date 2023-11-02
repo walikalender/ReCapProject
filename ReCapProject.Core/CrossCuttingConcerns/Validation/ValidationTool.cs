@@ -9,9 +9,9 @@ namespace ReCapProject.Core.CrossCuttingConcerns.Validation
 {
     public static class ValidationTool
     {
-        public static void Validate(IValidator validator,IEntity entity)
+        public static void Validate(IValidator validator,object entity)
         {
-            var context = new ValidationContext<IEntity>(entity);
+            var context = new ValidationContext<object>(entity);
             var result = validator.Validate(context);
 
             if (!result.IsValid)
